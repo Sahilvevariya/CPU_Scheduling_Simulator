@@ -13,6 +13,13 @@
             height: auto;
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/"
+  }
+}
+</script>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans leading-normal tracking-normal">
 
@@ -21,7 +28,7 @@
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight animate-fade-in-down">
                 CPU Scheduling Algorithms
             </h1>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in-up">
+            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in-up">
                 An interactive tool to visualize and understand how different CPU scheduling algorithms like FCFS, SJF, and Priority work. Compare their performance and test your knowledge.
             </p>
             <button id="enter-simulator" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 duration-300">
@@ -32,12 +39,12 @@
 
     <div id="simulator-section" class="container mx-auto p-4 lg:p-8 hidden">
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-white">CPU Scheduling Algorithm Simulator</h1>
-            <p class="text-lg text-gray-400 mt-2">An interactive way to learn and visualize CPU scheduling.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-white">CPU Scheduling Algorithm Simulator</h1>
+            <p class="text-base md:text-lg text-gray-400 mt-2">An interactive way to learn and visualize CPU scheduling.</p>
         </header>
 
         <nav class="bg-gray-800 rounded-lg shadow-md mb-8">
-            <ul class="flex justify-center items-center p-4 space-x-4 md:space-x-8" id="nav-links">
+            <ul class="flex justify-center items-center flex-wrap p-2 sm:p-4 gap-y-2 gap-x-4 md:gap-x-8" id="nav-links">
                 <li><a href="#intro" class="nav-link font-semibold text-blue-400 border-b-2 border-blue-400 pb-2">Introduction</a></li>
                 <li><a href="#fcfs" class="nav-link font-medium text-gray-400 hover:text-blue-400 transition-colors duration-300">FCFS</a></li>
                 <li><a href="#sjf" class="nav-link font-medium text-gray-400 hover:text-blue-400 transition-colors duration-300">SJF</a></li>
@@ -74,7 +81,7 @@
                     <h3 class="text-xl font-semibold mb-2">Gantt Chart</h3>
                     <div id="fcfs-gantt-chart" class="gantt-chart-container bg-gray-700 rounded p-2"></div>
                     <h3 class="text-xl font-semibold mt-4 mb-2">Performance Metrics</h3>
-                    <div id="fcfs-metrics" class="grid grid-cols-2 gap-4"></div>
+                    <div id="fcfs-metrics" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 </div>
             </section>
 
@@ -88,7 +95,7 @@
                     <h3 class="text-xl font-semibold mb-2">Gantt Chart</h3>
                     <div id="sjf-gantt-chart" class="gantt-chart-container bg-gray-700 rounded p-2"></div>
                     <h3 class="text-xl font-semibold mt-4 mb-2">Performance Metrics</h3>
-                    <div id="sjf-metrics" class="grid grid-cols-2 gap-4"></div>
+                    <div id="sjf-metrics" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 </div>
             </section>
 
@@ -102,7 +109,7 @@
                     <h3 class="text-xl font-semibold mb-2">Gantt Chart</h3>
                     <div id="priority-gantt-chart" class="gantt-chart-container bg-gray-700 rounded p-2"></div>
                     <h3 class="text-xl font-semibold mt-4 mb-2">Performance Metrics</h3>
-                    <div id="priority-metrics" class="grid grid-cols-2 gap-4"></div>
+                    <div id="priority-metrics" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 </div>
             </section>
 
