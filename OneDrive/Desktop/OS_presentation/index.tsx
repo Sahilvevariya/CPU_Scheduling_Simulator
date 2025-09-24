@@ -1,9 +1,3 @@
-/* tslint:disable */
-/**
- * @license
- * Copyright 2025 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
 
 // This tells TypeScript that these are global variables provided by the scripts.
 declare var d3: any;
@@ -220,7 +214,7 @@ class CPUSimulator {
         const container = document.querySelector(containerId);
         if (!container) return;
         container.innerHTML = `
-            <table class="w-full text-left border-collapse">
+            <table class="w-full text-left border-collapse text-sm sm:text-base">
                 <thead><tr class="bg-gray-700">
                     <th class="p-3 font-semibold">Process</th><th class="p-3 font-semibold">Arrival</th>
                     <th class="p-3 font-semibold">Burst</th><th class="p-3 font-semibold">Priority</th>
@@ -228,9 +222,9 @@ class CPUSimulator {
                 <tbody>${this.processes.map(p => `
                     <tr class="border-b border-gray-700">
                         <td class="p-3 flex items-center"><span class="w-4 h-4 rounded-full mr-3" style="background-color: ${p.color}"></span>${p.name}</td>
-                        <td class="p-3">${isEditable ? `<input type="number" class="w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="arrivalTime" value="${p.arrivalTime}" min="0">` : p.arrivalTime}</td>
-                        <td class="p-3">${isEditable ? `<input type="number" class="w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="burstTime" value="${p.burstTime}" min="1">` : p.burstTime}</td>
-                        <td class="p-3">${isEditable ? `<input type="number" class="w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="priority" value="${p.priority}" min="1">` : p.priority}</td>
+                        <td class="p-3">${isEditable ? `<input type="number" class="w-16 sm:w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="arrivalTime" value="${p.arrivalTime}" min="0">` : p.arrivalTime}</td>
+                        <td class="p-3">${isEditable ? `<input type="number" class="w-16 sm:w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="burstTime" value="${p.burstTime}" min="1">` : p.burstTime}</td>
+                        <td class="p-3">${isEditable ? `<input type="number" class="w-16 sm:w-20 p-1 bg-gray-600 border border-gray-500 rounded" data-pid="${p.id}" data-field="priority" value="${p.priority}" min="1">` : p.priority}</td>
                     </tr>`).join('')}
                 </tbody></table>`;
     }
@@ -256,10 +250,12 @@ class CPUSimulator {
 
         const maxTime = d3.max(data, (d: CPUProcess) => d.completionTime);
         const xScale = d3.scaleLinear().domain([0, maxTime]).range([0, width]);
+        
+        const numTicks = width < 400 ? 5 : 10;
 
         svg.append('g')
            .attr('transform', `translate(0, ${height})`)
-           .call(d3.axisBottom(xScale).ticks(Math.min(10, maxTime)))
+           .call(d3.axisBottom(xScale).ticks(Math.min(numTicks, maxTime)))
            .selectAll("text").style("fill", "#9ca3af");
 
         svg.selectAll("line,path").style("stroke", "#4b5563");
@@ -302,8 +298,8 @@ class CPUSimulator {
 
     private renderMetrics(metrics: Metrics, containerId: string) {
         document.querySelector(containerId).innerHTML = `
-            <div class="bg-gray-700 p-4 rounded-lg text-center"><h4 class="font-semibold text-lg text-gray-300">Avg. Waiting Time</h4><p class="text-2xl font-bold text-blue-400">${metrics.avgWaitingTime.toFixed(2)}</p></div>
-            <div class="bg-gray-700 p-4 rounded-lg text-center"><h4 class="font-semibold text-lg text-gray-300">Avg. Turnaround Time</h4><p class="text-2xl font-bold text-green-400">${metrics.avgTurnaroundTime.toFixed(2)}</p></div>`;
+            <div class="bg-gray-700 p-4 rounded-lg text-center"><h4 class="font-semibold text-base sm:text-lg text-gray-300">Avg. Waiting Time</h4><p class="text-xl sm:text-2xl font-bold text-blue-400">${metrics.avgWaitingTime.toFixed(2)}</p></div>
+            <div class="bg-gray-700 p-4 rounded-lg text-center"><h4 class="font-semibold text-base sm:text-lg text-gray-300">Avg. Turnaround Time</h4><p class="text-xl sm:text-2xl font-bold text-green-400">${metrics.avgTurnaroundTime.toFixed(2)}</p></div>`;
     }
     
     private renderComparisonTable() {
